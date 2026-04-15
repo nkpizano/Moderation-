@@ -107,10 +107,6 @@ How do you interpret $b_3$?
 
 -   Divergence or degree of non-parallelism in all slopes in the moderator, or the difference in slopes. \* One-unit change in $X$, antecedent variables, results in a change in $Y$ that depends on $W$.
 
--   For example, when W = 0, or not TikTok users, changing the number of followers by one a one unit will change the number of predicted positive posts by one unit.
-
--   when W = 1, or TikTok only users,changing the number of followers by one a one unit will change the number of predicted positive posts by 2.5 units.
-
 -   The larger the absolute value of $b_3$ the larger the divergence between the slopes between values of moderator.
 
 ## ![](RepresentationSlopes.png) Considerations
