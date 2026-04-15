@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Netasha Pizano">
+
+<title>Moderation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Moderation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Moderation_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Moderation_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Moderation_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Moderation_files/libs/quarto-html/popper.min.js"></script>
+<script src="Moderation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Moderation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Moderation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Moderation_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Moderation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Moderation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Moderation_files/libs/bootstrap/bootstrap-2340292281b8befc3820907ab5580ec9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#define-moderation" id="toc-define-moderation" class="nav-link" data-scroll-target="#define-moderation">Define Moderation</a>
+  <ul class="collapse">
+  <li><a href="#interpretations-of-regression-coefficients" id="toc-interpretations-of-regression-coefficients" class="nav-link" data-scroll-target="#interpretations-of-regression-coefficients">Interpretations of Regression Coefficients</a></li>
+  <li><a href="#considerations" id="toc-considerations" class="nav-link" data-scroll-target="#considerations"><img src="RepresentationSlopes.png" class="img-fluid"> Considerations</a></li>
+  </ul></li>
+  <li><a href="#example-of-moderation" id="toc-example-of-moderation" class="nav-link" data-scroll-target="#example-of-moderation">Example of Moderation</a>
+  <ul class="collapse">
+  <li><a href="#research-questions-and-hypotheses" id="toc-research-questions-and-hypotheses" class="nav-link" data-scroll-target="#research-questions-and-hypotheses">Research Questions and Hypotheses:</a></li>
+  <li><a href="#calling-in-the-data-and-exploring" id="toc-calling-in-the-data-and-exploring" class="nav-link" data-scroll-target="#calling-in-the-data-and-exploring">Calling in the Data and Exploring</a></li>
+  <li><a href="#center-x-and-w" id="toc-center-x-and-w" class="nav-link" data-scroll-target="#center-x-and-w">Center X and W</a></li>
+  <li><a href="#coding-techniques-for-running-moderation-model" id="toc-coding-techniques-for-running-moderation-model" class="nav-link" data-scroll-target="#coding-techniques-for-running-moderation-model">Coding Techniques for Running Moderation Model</a>
+  <ul class="collapse">
+  <li><a href="#use-the-linear-model-function-lm" id="toc-use-the-linear-model-function-lm" class="nav-link" data-scroll-target="#use-the-linear-model-function-lm">Use the linear model function (lm)</a></li>
+  <li><a href="#from-dr.nancy-collins-talk-on-using-the-process-macro" id="toc-from-dr.nancy-collins-talk-on-using-the-process-macro" class="nav-link" data-scroll-target="#from-dr.nancy-collins-talk-on-using-the-process-macro">From Dr.Nancy Collins talk on Using the PROCESS macro</a></li>
+  </ul></li>
+  <li><a href="#visualizing-moderation-for-r" id="toc-visualizing-moderation-for-r" class="nav-link" data-scroll-target="#visualizing-moderation-for-r">Visualizing Moderation for R</a></li>
+  <li><a href="#interpretation-of-findings" id="toc-interpretation-of-findings" class="nav-link" data-scroll-target="#interpretation-of-findings">Interpretation of Findings</a></li>
+  <li><a href="#probing-the-interaction" id="toc-probing-the-interaction" class="nav-link" data-scroll-target="#probing-the-interaction">Probing the interaction</a></li>
+  <li><a href="#interpreation-of-the-probing-the-interaction" id="toc-interpreation-of-the-probing-the-interaction" class="nav-link" data-scroll-target="#interpreation-of-the-probing-the-interaction">Interpreation of the Probing the interaction</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Moderation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Netasha Pizano </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>This module consists of two parts. In part one, well will discuss and review moderation models using Hayes (2020) ProcessR Macro and base R. Using simulated data inspired by multiple social media studies and Dr.&nbsp;Nancy Collins <em>Introduction to Mediation Analysis</em>, we will explore the relationship between the number of social medial followers and negative posts considering social media platform as a moderator in part one and overall levels of stress as mediator in part two.</p>
+</section>
+<section id="packages" class="level1">
+<h1>Packages</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co">#use this package with ggplot to create graphs and summarize data </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych) <span class="co">#use this package for descriptive statistics</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr) <span class="co">#use this package for descriptive statistics </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co">#use this package for reading in a csv file </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("interactions") copy and paste into your console- 3rd panel </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions) <span class="co">#use this package to create interaction in ggplot</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) <span class="co">#use this package to create moderation plots </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="define-moderation" class="level1">
+<h1>Define Moderation</h1>
+<p>Goal: According to Hayes, the purpose of a moderation model is to identify the “boundary conditions of an association between two variables”.</p>
+<ul>
+<li><p>Determine how a third variable, W (the moderator), affects the relationship between an focal antecedent variable, X, and a response variable, Y.</p></li>
+<li><p>In other words, there is a conditional effect on the relationship between x and y. The amount by which two cases that diﬀer by one unit on X are estimated to diﬀer on Y.</p></li>
+</ul>
+<p><img src="ConceptualModel.png" class="img-fluid"></p>
+<ul>
+<li><p>Moderation is just an other term for statistical interaction. The analytic procedure is a regression-based procedure that is mathematically similar to ANOVA.</p></li>
+<li><p>Estimate the number of positive posts we regress the antecedent variable, moderator, and the product of the antecedent variable and moderator.</p></li>
+</ul>
+<p><span class="math display">\[\hat{Y} = i_Y+b_1X_{1}+b_2W_{1}+b_3X_{1}W_{1}+e_Y\]</span> <img src="ConceptualInteraction.png" class="img-fluid"></p>
+<ul>
+<li>Examine whether the strength or direction of the relationship between the number of followers and positive posts depends on whether the subject posts on TikTok or non-TikTok users, as shown in the conceptual model below.</li>
+</ul>
+<p><img src="ConceptModel_Example.png" class="img-fluid"></p>
+<ul>
+<li>We examine how the number of followers varies across social media platforms. Another way we can convey this relationship is that for different social media platforms, the number of followers impacts the number of negative posts differently.</li>
+</ul>
+<p><span class="math display">\[\hat{Y}_{PositivePost} = i_Y+b_1X_{Followers}+b_2W_{Account}+b_3X_{Followers}W_{Account}+e_Y\]</span></p>
+<section id="interpretations-of-regression-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="interpretations-of-regression-coefficients">Interpretations of Regression Coefficients</h2>
+<p>How to interpret <span class="math inline">\(b_1\)</span>?</p>
+<ul>
+<li><p>That is, <span class="math inline">\(b_1\)</span> quantifies how much two cases that diﬀer by one unit on <span class="math inline">\(X\)</span> but with <span class="math inline">\(W = 0\)</span> are estimated to diﬀer on Y. <span class="math inline">\(b_1\)</span> represents the association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(W = 0\)</span>.</p></li>
+<li><p>b1 is the slope of the line linking X to Y when <span class="math inline">\(W = 0\)</span></p></li>
+<li><p>A one unit difference in the number of followers are estimated to differ by <span class="math inline">\(b_1\)</span> in the number of positive posts for non-TikTok users.</p></li>
+<li><p>It is similar to a simple effect in ANOVA</p></li>
+</ul>
+<p>How to interpret <span class="math inline">\(b_2\)</span>?</p>
+<ul>
+<li><p><span class="math inline">\(b_2\)</span> is the conditional eﬀect of <span class="math inline">\(W\)</span> on <span class="math inline">\(Y\)</span> when <span class="math inline">\(X = 0\)</span></p></li>
+<li><p>how much two cases that diﬀer by one unit on <span class="math inline">\(W\)</span> are estimated to diﬀer on <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X= 0\)</span>.</p></li>
+<li><p>TikTok and Non-TikTok users are estimated to differ by <span class="math inline">\(b_2\)</span> positive posts when someone has 0 followers.</p></li>
+</ul>
+<p>How do you interpret <span class="math inline">\(b_3\)</span>?</p>
+<ul>
+<li><p>Divergence or degree of non-parallelism in all slopes in the moderator, or the difference in slopes. * One-unit change in <span class="math inline">\(X\)</span>, antecedent variables, results in a change in <span class="math inline">\(Y\)</span> that depends on <span class="math inline">\(W\)</span>.</p></li>
+<li><p>For example, when W = 0, or not TikTok users, changing the number of followers by one a one unit will change the number of predicted positive posts by one unit.</p></li>
+<li><p>when W = 1, or TikTok only users,changing the number of followers by one a one unit will change the number of predicted positive posts by 2.5 units.</p></li>
+<li><p>The larger the absolute value of <span class="math inline">\(b_3\)</span> the larger the divergence between the slopes between values of moderator.</p></li>
+</ul>
+</section>
+<section id="considerations" class="level2">
+<h2 class="anchored" data-anchor-id="considerations"><img src="RepresentationSlopes.png" class="img-fluid"> Considerations</h2>
+<ul>
+<li>Using Process macro is not necessary, but is a popular approach because code is reduced to specifying the role of variables.</li>
+<li>Process uses listwise deletion, where an entire observation or case is removed if it contains any missing values across selected variables.</li>
+<li>Moderation is symmetrical, where the antecedent can be expressed as the moderator and moderator as the antecedent.</li>
+<li>b3 will be diﬀerent from zero even when X’s eﬀect on Y is independent of W.</li>
+<li>If XW are in the model, X and W should be included as well, even if b1 and b2 are not statistically significant. Excluding X or W will bias the estimate of the moderation of X’s eﬀect by W.</li>
+</ul>
+</section>
+</section>
+<section id="example-of-moderation" class="level1">
+<h1>Example of Moderation</h1>
+<section id="research-questions-and-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="research-questions-and-hypotheses">Research Questions and Hypotheses:</h2>
+<ul>
+<li><p>RQ1: Does a social media account (TikTok user vs.&nbsp;non-TikTok user) moderate the relationship between the number of followers and the number of positive posts?</p>
+<ul>
+<li><p>HO: The relationship between the number of followers and positive posts does not depend on whether the social media user is a TikTok user or a non-TikTok user.</p></li>
+<li><p>HA: The relationship between the number of followers and positive posts is stronger for TikTok users versus non-TikTok users.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="calling-in-the-data-and-exploring" class="level2">
+<h2 class="anchored" data-anchor-id="calling-in-the-data-and-exploring">Calling in the Data and Exploring</h2>
+<p>Always evaluate the raw data. Ensure that your data is tidy, with each row representing an observation and each column a variable. Evaluate the distribution of the variables and identify and handle missing data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in the data using the read_csv function </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>SM_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"socialmedia.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 300 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+dbl (5): subnum, Followers, SMAccount, Cortisol, PosPost
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the skim function in skimr package we can get a table of descriptive statistics </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(SM_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">SM_df</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">subnum</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">150.50</td>
+<td style="text-align: right;">86.75</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">75.75</td>
+<td style="text-align: right;">150.50</td>
+<td style="text-align: right;">225.25</td>
+<td style="text-align: right;">300.00</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Followers</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">100.92</td>
+<td style="text-align: right;">55.57</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">53.75</td>
+<td style="text-align: right;">97.00</td>
+<td style="text-align: right;">147.25</td>
+<td style="text-align: right;">199.00</td>
+<td style="text-align: left;">▆▇▇▇▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SMAccount</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: left;">▇▁▁▁▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cortisol</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9.19</td>
+<td style="text-align: right;">6.28</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: left;">▅▂▁▁▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PosPost</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">28.52</td>
+<td style="text-align: right;">12.38</td>
+<td style="text-align: right;">7.97</td>
+<td style="text-align: right;">17.66</td>
+<td style="text-align: right;">24.76</td>
+<td style="text-align: right;">40.42</td>
+<td style="text-align: right;">53.41</td>
+<td style="text-align: left;">▅▇▃▆▃</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the describe function in the psych package to also explore the data </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(SM_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          vars   n   mean    sd median trimmed    mad  min    max  range  skew
+subnum       1 300 150.50 86.75 150.50  150.50 111.19 1.00 300.00 299.00  0.00
+Followers    2 300 100.92 55.57  97.00  100.54  68.94 2.00 199.00 197.00  0.07
+SMAccount    3 300   0.48  0.50   0.00    0.48   0.00 0.00   1.00   1.00  0.07
+Cortisol     4 300   9.19  6.28  15.00    9.49   0.00 1.00  15.00  14.00 -0.28
+PosPost      5 300  28.52 12.38  24.76   28.21  15.01 7.97  53.41  45.44  0.24
+          kurtosis   se
+subnum       -1.21 5.01
+Followers    -1.17 3.21
+SMAccount    -2.00 0.03
+Cortisol     -1.76 0.36
+PosPost      -1.40 0.71</code></pre>
+</div>
+</div>
+<p>Find the descriptive information of variables given some group data for our example.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We are using the SM_df and grouping by TikTok vs non-TikTok users. We are going to summarise using the summarise function across variables that are numeric.Specifically, we want to list using the list function, where mean is labeled as the mean, standard deviation is labeled as the sd, minimum value is labeled as the minimum, and maximum value is labeled as max.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>summary_all <span class="ot">&lt;-</span> SM_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SMAccount) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(subnum,SMAccount)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">where</span>(is.numeric), </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd, <span class="at">min =</span> min, <span class="at">max =</span> max), </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.names =</span> <span class="st">"{.col}_{.fn}"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Adding missing grouping variables: `SMAccount`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `summarise()`.
+ℹ In argument: `across(...)`.
+ℹ In group 1: `SMAccount = 0`.
+Caused by warning:
+! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
+Supply arguments directly to `.fns` through an anonymous function instead.
+
+  # Previously
+  across(a:b, mean, na.rm = TRUE)
+
+  # Now
+  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>summary_all</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 13
+  SMAccount Followers_mean Followers_sd Followers_min Followers_max
+      &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+1         0          104.          56.2             2           197
+2         1           97.3         54.9             3           199
+# ℹ 8 more variables: Cortisol_mean &lt;dbl&gt;, Cortisol_sd &lt;dbl&gt;,
+#   Cortisol_min &lt;dbl&gt;, Cortisol_max &lt;dbl&gt;, PosPost_mean &lt;dbl&gt;,
+#   PosPost_sd &lt;dbl&gt;, PosPost_min &lt;dbl&gt;, PosPost_max &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="center-x-and-w" class="level2">
+<h2 class="anchored" data-anchor-id="center-x-and-w">Center X and W</h2>
+<ul>
+<li>Using dplyr you can mean-center variables to help with the interpretation of coefficients.</li>
+<li>Mean center suggests that each value of the variable is subtracted by its mean, which will provide the distance away from the variables mean.</li>
+<li>Centering your data will change the <span class="math inline">\(b_1\)</span>, estimates the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>, when <span class="math inline">\(W\)</span> = 0.However, all other coefficients will remian the same</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the mutate function to change or mutate variables </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the across function if we want to change both x and w. </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the tilde (~) and . to mean all values of the given variable minus the mean .</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># in the case you have missing data use all values except those that are missing using the na.remove function. </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the .name provides the set us of the column names, which will start with the orginal column name_c for center</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>SM_df <span class="ot">&lt;-</span> SM_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(Followers), </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> . <span class="sc">-</span> <span class="fu">mean</span>(., <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.names =</span> <span class="st">"{.col}_c"</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="coding-techniques-for-running-moderation-model" class="level2">
+<h2 class="anchored" data-anchor-id="coding-techniques-for-running-moderation-model">Coding Techniques for Running Moderation Model</h2>
+<section id="use-the-linear-model-function-lm" class="level3">
+<h3 class="anchored" data-anchor-id="use-the-linear-model-function-lm">Use the linear model function (lm)</h3>
+<ul>
+<li>The response variable, Y, is regressed on the antecedent variable (X), moderator (W), and their interaction.</li>
+<li>An interaction can be specified by multiplying X and W using the asterisk symbol (*) between both.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Base R all in one line approach </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(PosPost<span class="sc">~</span>Followers_c<span class="sc">+</span>SMAccount<span class="sc">+</span>Followers_c<span class="sc">*</span>SMAccount,<span class="at">data=</span> SM_df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = PosPost ~ Followers_c + SMAccount + Followers_c * 
+    SMAccount, data = SM_df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.4421  -3.1637   0.0985   3.2045  13.5728 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           17.726384   0.366216  48.404  &lt; 2e-16 ***
+Followers_c            0.006877   0.006531   1.053    0.293    
+SMAccount             22.581691   0.526857  42.861  &lt; 2e-16 ***
+Followers_c:SMAccount  0.068078   0.009507   7.161 6.36e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.551 on 296 degrees of freedom
+Multiple R-squared:  0.8662,    Adjusted R-squared:  0.8648 
+F-statistic: 638.6 on 3 and 296 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+</section>
+<section id="from-dr.nancy-collins-talk-on-using-the-process-macro" class="level3">
+<h3 class="anchored" data-anchor-id="from-dr.nancy-collins-talk-on-using-the-process-macro">From Dr.Nancy Collins talk on Using the PROCESS macro</h3>
+<ul>
+<li><p>Let’s run the moderation again using the <strong>PROCESS macro</strong> in R.</p></li>
+<li><p>You will need the <code>process.R</code> script provided by <a href="https://www.processmacro.org/index.html">Andrew Hayes</a>.</p></li>
+<li><p>Unlike standard R packages, PROCESS is a custom function you must “source” into your environment first.</p></li>
+</ul>
+<section id="preparation-load-process-into-r" class="level4">
+<h4 class="anchored" data-anchor-id="preparation-load-process-into-r">Preparation: Load PROCESS into R</h4>
+<ul>
+<li><p>Make sure the <code>process.R</code> script file is in your current working directory</p></li>
+<li><p>Run this script file, do not change anything in it!</p></li>
+<li><p>Be patient, it may take a minute or two to run</p></li>
+<li><p>Once the script finished, the <code>process</code> function will now be available for you to use</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source the PROCESS macro function</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"process.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+ 
+PROCESS is now ready for use.
+Copyright 2013-2025 by Andrew F. Hayes ALL RIGHTS RESERVED
+Workshop schedule at haskayne.ucalgary.ca/CCRAM 
+Information about PROCESS available at processmacro.org/faq.html </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">process</span> (<span class="at">data=</span>SM_df,<span class="at">y=</span><span class="st">"PosPost"</span>,<span class="at">x=</span><span class="st">"Followers_c"</span>,<span class="at">w=</span><span class="st">"SMAccount"</span>,<span class="at">model=</span><span class="dv">1</span>,<span class="at">jn=</span><span class="dv">1</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="at">plot=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+**************** PROCESS Procedure for R Version 5.0 ****************** 
+ 
+           Written by Andrew F. Hayes, Ph.D.  www.afhayes.com              
+   Documentation available in Hayes (2022). www.guilford.com/p/hayes3   
+ 
+*********************************************************************** 
+                    
+  Model: 1          
+      Y: PosPost    
+      X: Followers_c
+      W: SMAccount  
+
+Sample size: 300
+
+
+*********************************************************************** 
+Outcome Variable: PosPost
+
+Model Summary: 
+          R      R-sq       MSE         F       df1       df2         p
+     0.9307    0.8662   20.7133  638.6029    3.0000  296.0000    0.0000
+
+Model: 
+                coeff        se         t         p      LLCI      ULCI
+constant      17.7264    0.3662   48.4042    0.0000   17.0057   18.4471
+Followers_c    0.0069    0.0065    1.0530    0.2932   -0.0060    0.0197
+SMAccount     22.5817    0.5269   42.8612    0.0000   21.5448   23.6186
+int_1          0.0681    0.0095    7.1612    0.0000    0.0494    0.0868
+
+Product terms key:
+int_1  :  Followers_c  x  SMAccount      
+
+Test(s) of highest order unconditional interaction(s):
+      R2-chng         F       df1       df2         p
+X*W    0.0232   51.2823    1.0000  296.0000    0.0000
+----------
+Focal predictor: Followers_c (X)
+      Moderator: SMAccount (W)
+
+Conditional effects of the focal predictor at values of the moderator(s):
+  SMAccount    effect        se         t         p      LLCI      ULCI
+     0.0000    0.0069    0.0065    1.0530    0.2932   -0.0060    0.0197
+     1.0000    0.0750    0.0069   10.8497    0.0000    0.0614    0.0886
+
+Data for visualizing the conditional effect of the focal predictor:
+  Followers_c SMAccount   PosPost
+     -64.7633    0.0000   17.2810
+      -3.9233    0.0000   17.6994
+      66.9167    0.0000   18.1866
+     -64.7633    1.0000   35.4537
+      -3.9233    1.0000   40.0140
+      66.9167    1.0000   45.3238</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+******************** ANALYSIS NOTES AND ERRORS ************************ 
+
+Level of confidence for all confidence intervals in output: 95</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="visualizing-moderation-for-r" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-moderation-for-r">Visualizing Moderation for R</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ensure that social media accounts are set to factors for the graph </span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>SM_df<span class="sc">$</span>SMAccount <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(SM_df<span class="sc">$</span>SMAccount)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#I rerun the model with the factor social media variable </span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(PosPost <span class="sc">~</span> Followers_c <span class="sc">*</span> SMAccount, <span class="at">data =</span> SM_df)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using the interactive plot function </span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># State the model object name </span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  pred = Give the predictor variable/antecedent</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># modx = give the moderation </span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#plot.points = TRUE adds raw data points</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#interval = TRUE adds confidence bands with their width set to 95</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  model,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">pred =</span> Followers_c,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">modx =</span> SMAccount,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.points =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">int.width =</span> <span class="fl">0.95</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.label =</span> <span class="st">"Mean-centered Followers"</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">y.label =</span> <span class="st">"Predicted Positive Posts"</span>,</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.main =</span> <span class="st">"SMAccount"</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Moderation_files/figure-html/VisualizingR-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation-of-findings" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-findings">Interpretation of Findings</h2>
+<p><span class="math inline">\(b_2\)</span></p>
+<ul>
+<li><p>The regression coeﬃcient for account type is <span class="math inline">\(b_2=\)</span> 22.58 and statistically diﬀerent from zero <span class="math inline">\((p &lt; .001)\)</span>.</p></li>
+<li><p>The sign is positive, suggesting that among TikTok users, the relationship between the number of positive posts and zero followers is stronger than that of non-TikTok users.</p></li>
+<li><p>how much two cases that diﬀer by one unit on <span class="math inline">\(W\)</span> are estimated to diﬀer on <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X= 0\)</span>.</p></li>
+</ul>
+<p><span class="math inline">\(b_3\)</span></p>
+<ul>
+<li><p>The regression coeﬃcient for the product between TikTok user account holders and the number of followers is <span class="math inline">\(b_3\)</span> = 0.068. This coeﬃcient quantifies how the eﬀect of the number of followers on the number of positive posts changes as the account type changes.</p></li>
+<li><p><span class="math inline">\(b_3\)</span> is statistically diﬀerent from zero, meaning that the eﬀect of the number of followers on the number of positive posts depends on whether the social media user is a TikTok user versus non-TikTok social media users</p></li>
+<li><p>More specifically,the relationship strength between positive posts and the number of followers “increases” by 0.068 units, between TikTok and non-TikTok users, meaning that this eﬀect moves right on the number line toward larger values.</p></li>
+</ul>
+</section>
+<section id="probing-the-interaction" class="level2">
+<h2 class="anchored" data-anchor-id="probing-the-interaction">Probing the interaction</h2>
+<ul>
+<li><p>Probing is a post-hoc approach to evaluating the interaction.</p></li>
+<li><p>The post-hoc inferential test establishes where in the distribution of the moderator the antecedent variable,X, has an eﬀect on response variable, Y, that is diﬀerent from zero and where it does not.</p></li>
+<li><p>PROCESS uses a pick a point approach, which can be referred to as analysis of simple slope.</p></li>
+<li><p>According to Hayes probing is a procedure that involves selecting a value or values of the moderator W, calculating the conditional eﬀect of X on Y at that value or values, and then conducting an inferential test or generating a confidence interval.</p></li>
+</ul>
+</section>
+<section id="interpreation-of-the-probing-the-interaction" class="level2">
+<h2 class="anchored" data-anchor-id="interpreation-of-the-probing-the-interaction">Interpreation of the Probing the interaction</h2>
+<ul>
+<li>Probing the interaction suggests that the type of social media account appears to have a statistically significant effect on the strength of relationship between the number of followers and the number of positive posts. Specifically among non-TikTok users the there was no statistically significant effect of the number of followers on positive posts <span class="math inline">\((\theta_{XY}|W=0)= 0.0069, t(298) = 1.0530,p = 0.2932\)</span>, there was for TikTok users with <span class="math inline">\((\theta_{XY}|W=1)= 0.075, t(298) = 10.8497, p &lt; 0.000\)</span></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
