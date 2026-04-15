@@ -9,14 +9,14 @@ format:
     code-copy: true
     toc: true
     toc-location: left
-    toc-depth: 3
+    toc-depth: 4
     self_contained: true
 editor: visual
 ---
 
 # Overview
 
-This module consists of two parts. In part one, well will discuss and review moderation models using Hayes (2020) ProcessR Macro and base R. Using simulated data inspired by multiple social media studies and Dr. Nancy Collins *Introduction to Mediation Analysis*, we will explore the relationship between the number of social medial followers and negative posts considering social media platform as a moderator in part one and overall levels of stress as mediator in part two.
+This module consists of two parts. In part one, well will discuss and review moderation models using Hayes (2020) ProcessR Macro and base R. Using simulated data inspired by multiple social media studies and Dr. Nancy Collins *Introduction to Mediation Analysis*, we will explore the relationship between the number of social media followers and negative posts considering social media platform as a moderator in part one and overall levels of stress as mediator in part two.
 
 # Packages
 
