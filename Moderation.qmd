@@ -16,7 +16,7 @@ editor: visual
 
 # Overview
 
-This module consists of two parts. In part one, well will discuss and review moderation models using Hayes (2020) ProcessR Macro and base R. Using simulated data inspired by multiple social media studies and Dr. Nancy Collins *Introduction to Mediation Analysis*, we will explore the relationship between the number of social media followers and negative posts considering social media platform as a moderator in part one and overall levels of stress as mediator in part two.
+This module consists of two parts. In part one, well will discuss and review moderation models using Hayes (2020) ProcessR Macro and base R. Using simulated data inspired by multiple social media studies and Dr. Nancy Collins *Introduction to Mediation Analysis*, we will explore the relationship between the number of social media followers and positive posts considering social media platform as a moderator in part one and overall levels of stress as mediator in part two.
 
 # Packages
 
@@ -79,7 +79,7 @@ $$\hat{Y} = i_Y+b_1X_{1}+b_2W_{1}+b_3X_{1}W_{1}+e_Y$$ ![](ConceptualInteraction.
 
 ![](ConceptModel_Example.png)
 
--   We examine how the number of followers varies across social media platforms. Another way we can convey this relationship is that for different social media platforms, the number of followers impacts the number of negative posts differently.
+-   We examine how the number of followers varies across social media platforms. Another way we can convey this relationship is that for different social media platforms, the number of followers impacts the number of positive posts differently.
 
 $$\hat{Y}_{PositivePost} = i_Y+b_1X_{Followers}+b_2W_{Account}+b_3X_{Followers}W_{Account}+e_Y$$
 
